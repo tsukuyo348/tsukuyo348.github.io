@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 200px;
+        }
+        
+        #quote {
+            font-size: 24px;
+            color: #333;
+        }
+        
+        #author {
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quote">加载中...</div>
+    <div id="author"></div>
+
+    <script>
+        // 从一言 API 获取随机的一言
+        fetch('https://v1.hitokoto.cn')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('quote').textContent = data.hitokoto;
+                document.getElementById('author').textContent = '—— ' + data.from;
+            })
+            .catch(error => {
+                console.log('获取', error);
+            });
+    </script>
+</body>
+</html>
